@@ -99,6 +99,7 @@ public class RecipeBootStrap implements ApplicationListener<ContextRefreshedEven
         Category mexicanCategory = mexicanCategoryOptional.get();
 
         Recipe guacamole = new Recipe();
+        guacamole.setDescription("Perfect Guacamole");
         guacamole.setPrepTime(10);
         guacamole.setServings(4);
         guacamole.setCookTime(20);
