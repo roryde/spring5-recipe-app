@@ -33,6 +33,7 @@ public class RecipeBootStrap implements ApplicationListener<ContextRefreshedEven
     @Transactional
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
 
+        log.debug("getting recipes");
         recipeRepository.saveAll(getRecipes());
     }
 
