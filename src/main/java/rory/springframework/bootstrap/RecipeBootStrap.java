@@ -1,8 +1,10 @@
 package rory.springframework.bootstrap;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 import rory.springframework.domain.*;
 import rory.springframework.repositories.CategoryRepository;
 import rory.springframework.repositories.RecipeRepository;
@@ -13,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @Component
 public class RecipeBootStrap implements ApplicationListener<ContextRefreshedEvent> {
 
@@ -27,6 +30,7 @@ public class RecipeBootStrap implements ApplicationListener<ContextRefreshedEven
     }
 
     @Override
+    @Transactional
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
 
         recipeRepository.saveAll(getRecipes());
@@ -189,6 +193,7 @@ public class RecipeBootStrap implements ApplicationListener<ContextRefreshedEven
 
         recipes.add(tacosRecipe);
 
+        log.debug(guacamole.getPrepTime().toString());
         System.out.println(guacamole.getPrepTime().toString());
         System.out.println(guacamole.getNotes().getRecipeNotes());
         System.out.println(cupsUom.getDescription());
